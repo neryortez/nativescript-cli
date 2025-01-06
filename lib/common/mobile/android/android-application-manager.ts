@@ -43,7 +43,7 @@ export class AndroidApplicationManager extends ApplicationManagerBase {
 
 	public async getInstalledApplications(): Promise<string[]> {
 		const result =
-			(await this.adb.executeShellCommand(["pm", "list", "packages"])) || "";
+			(await this.adb.executeShellCommand(["pm", "list", "packages --user 0"])) || "";
 		const regex = /package:(.+)/;
 		return result
 			.split(EOL)
